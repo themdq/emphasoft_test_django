@@ -21,9 +21,6 @@ class Room(models.Model):
     def __str__(self) -> str:
         return str(self.room_no)
 
-    def hotel_name(self) -> str:
-        return self.hotel
-
 
 class Booking(models.Model):
     guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
@@ -35,9 +32,6 @@ class Booking(models.Model):
 
     def __str__(self) -> str:
         return self.guest.name
-
-    def hotel_name(self) -> str:
-        return self.hotel.hotel
 
     def charge(self) -> float:
         return self.is_checkout * \

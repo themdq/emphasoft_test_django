@@ -18,11 +18,7 @@ from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hotel-app/', include('hotel_app.urls'))
+    path('hotel-app/', include('hotel_app.urls')),
+    path('front/', include('front.urls')),
+    path('', include('front.urls')),
 ]
-
-
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

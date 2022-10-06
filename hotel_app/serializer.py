@@ -11,7 +11,7 @@ class GuestSerializer(serializers.HyperlinkedModelSerializer):
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ("room_no", "price", "hotel", "is_booked")
+        fields = ("room_no", "price", "is_booked")
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -19,4 +19,4 @@ class BookingSerializer(serializers.ModelSerializer):
     room = RoomSerializer
     class Meta:
         model = Booking
-        fields = ("guest", "hotel", "room", "checkin_date", "checkout_date", "charge",)
+        fields = ("guest", "room", "checkin_date", "checkout_date", "charge",)
