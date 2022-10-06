@@ -16,7 +16,6 @@ class Room(models.Model):
     room_no = models.IntegerField(default=101)
     price = models.FloatField(default=1000.0)
     room_size = models.FloatField(default=1)
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     is_booked = models.BooleanField(default=False)
 
     def __str__(self) -> str:
