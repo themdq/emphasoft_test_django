@@ -1,17 +1,11 @@
 from rest_framework import fields, serializers
-from .models import Guest, Hotel, Room , Booking
+from .models import Guest, Room , Booking
 
 
 class GuestSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Guest
         fields = ("name", "age", "phone", "email")
-
-
-class HotelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Hotel
-        fields = ("name", "location", "phone", "email")
 
 
 class RoomSerializer(serializers.ModelSerializer):
@@ -22,7 +16,6 @@ class RoomSerializer(serializers.ModelSerializer):
 
 class BookingSerializer(serializers.ModelSerializer):
     guest = GuestSerializer
-    hotel = HotelSerializer
     room = RoomSerializer
     class Meta:
         model = Booking

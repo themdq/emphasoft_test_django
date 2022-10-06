@@ -2,15 +2,14 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Guest, Hotel, Room, Booking
-from .serializer import GuestSerializer, HotelSerializer, RoomSerializer, BookingSerializer
+from .models import Guest, Room, Booking
+from .serializer import GuestSerializer, RoomSerializer, BookingSerializer
 
 from collections import namedtuple
 
 nt = namedtuple("object", ["model", "serializers"])
 pattern = {
     "guest": nt(Guest, GuestSerializer),
-    "hotel": nt(Hotel, HotelSerializer),
     "room": nt(Room, RoomSerializer),
     "booking": nt(Booking, BookingSerializer),
 }

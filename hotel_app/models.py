@@ -12,20 +12,10 @@ class Guest(models.Model):
     def __str__(self) -> str:
         return self.name
 
-
-class Hotel(models.Model):
-    name = models.CharField(max_length=20)
-    location = models.CharField(max_length=50)
-    phone = models.CharField(max_length=20)
-    email = models.CharField(max_length=30)
-
-    def __str__(self) -> str:
-        return self.name
-
-
 class Room(models.Model):
     room_no = models.IntegerField(default=101)
     price = models.FloatField(default=1000.0)
+    room_size = models.FloatField(default=1)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     is_booked = models.BooleanField(default=False)
 
@@ -38,7 +28,6 @@ class Room(models.Model):
 
 class Booking(models.Model):
     guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     num_of_guest = models.IntegerField(default=1)
     checkin_date = models.DateField(default=datetime.now)
