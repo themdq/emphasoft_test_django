@@ -1,0 +1,30 @@
+{% include "front/base.html" %}
+
+
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <form class="form_book" method="get" action="{% url 'search_results' %}">
+                     <div class="row">
+                        <div class="col-md-3">
+                           <label class="date">ARRIVAL DATE</label>
+                           <input class="book_n"  type="date" name="checkin" placeholder="Date" >
+                        </div>
+                        <div class="col-md-3">
+                           <label class="date">DEPARTURE DATE</label>
+                           <input class="book_n"  type="date" name="checkout" placeholder="Date" >
+                        </div>
+                        <div class="col-md-3">
+                           <label class="date">PERSON</label>
+                           <input class="book_n" placeholder="2" type="type" name="q">
+                        </div>
+                        <div class="col-md-3">
+                           <button class="book_btn">Book Now</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+
+

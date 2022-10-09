@@ -1,0 +1,31 @@
+{% load static %}
+<!-- loader
+      <div class="loader_bg">
+         <div class="loader"><img src="{% static 'images/loading.gif' %}" alt="#" /></div>
+      </div>
+      end loader -->
+<h1>Search Results</h1>
+<a href="{% url 'index' %}">Back to main</a>
+<form action="{% url 'look_results' %}" method="get" id="sortProduct">
+
+  <div class="box sort pull-right">
+    <span>Сортировка:</span>
+    <button value="Сортировка" class="dropdown-toggle" type="submit" data-toggle="dropdown" id="menu2">
+     <span class="dropdown-label">По умолчанию</span>
+    </button>
+   <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+      <li><input type="submit" name="orderby" value="room_size"></li>
+       <li><input type="submit" name="orderby" value="-room_size"></li>
+      <li><input type="submit" name="orderby" value="price"></li>
+      <li><input type="submit" name="orderby" value="-price"></li>
+       <li><input type="button" name ="filterby" value="1"></li>
+   </ul>
+  </div>
+</form>
+<ul>
+  {% for room in object_list %}
+    <li>
+      {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
+    </li>
+  {% endfor %}
+</ul>
