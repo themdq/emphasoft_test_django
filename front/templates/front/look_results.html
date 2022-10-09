@@ -25,8 +25,8 @@
 </form>
 <ul>
   {% for room in object_list %}
-    <li>
+    <div>
       {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
-    </li>
+    </div>
   {% endfor %}
 </ul>

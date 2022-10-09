@@ -1,4 +1,5 @@
 {% load crispy_forms_tags %}
+{% include 'front/base.html' %}
 {% block content %}
     <div class="content-section">
       <div class="media">
@@ -18,6 +19,5 @@
               <button class="btn btn-outline-info" type="submit">Обновить</button>
           </div>
       </form>
-    <a href="{% url 'index' %}">Back to main</a>
     </div>
 {% endblock content %}

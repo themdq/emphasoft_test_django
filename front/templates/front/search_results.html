@@ -8,13 +8,13 @@
 <h1>Search Results</h1>
 <ul>
   {% for room in object_list %}
-    <li>
-      {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
+    <div>
+    {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
         <form action="{% url 'book' %}">
             <button>BOOK</button>
         </form>
+    </div>
 
 
-    </li>
   {% endfor %}
 </ul>

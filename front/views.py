@@ -58,4 +58,4 @@ def book(request):
     cache.delete('num')
     print(request.user)
     #Booking.objects.create(guest='Dmitriy')
-    return render(request, 'front/home.html')
+    return render(request, 'registration/profile.html')
