@@ -37,3 +37,4 @@ class Booking(models.Model):
         return self.is_checkout * \
                (self.checkout_date - self.checkin_date + timedelta(1)).days * \
                self.room.price
+
