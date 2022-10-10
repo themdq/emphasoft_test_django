@@ -3,6 +3,7 @@ from django.db import models
 from datetime import datetime
 from registration.models import Profile
 
+
 class Guest(models.Model):
     name = models.CharField(max_length=20)
     age = models.IntegerField(default=20)
@@ -11,6 +12,7 @@ class Guest(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
 
 class Room(models.Model):
     room_no = models.IntegerField(default=101)
@@ -35,6 +37,5 @@ class Booking(models.Model):
 
     def charge(self) -> float:
         return self.is_checkout * \
-               (self.checkout_date - self.checkin_date + timedelta(1)).days * \
-               self.room.price
-
+            (self.checkout_date - self.checkin_date + timedelta(1)).days * \
+            self.room.price

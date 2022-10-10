@@ -18,7 +18,7 @@ pattern = {
 @api_view(["GET", "POST"])
 def ListView(request, api_name):
     object = pattern.get(api_name, None)
-    if object == None:
+    if object is None:
         return Response(
             data="Invalid URL",
             status=status.HTTP_404_NOT_FOUND,
@@ -42,4 +42,3 @@ def ListView(request, api_name):
             data=serializers.error,
             status=status.HTTP_201_CREATED
         )
-

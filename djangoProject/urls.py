@@ -27,8 +27,17 @@ urlpatterns = [
     path('', include('front.urls')),
     path('register/', reg_views.register, name='register'),
     path('profile/', reg_views.BookingList.as_view(), name='profile'),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    path(
+        'login/',
+        auth_views.LoginView.as_view(
+            template_name='registration/login.html'),
+        name='login'),
+    path(
+        'logout/',
+        auth_views.LogoutView.as_view(
+            template_name='registration/logout.html'),
+        name='logout'),
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
