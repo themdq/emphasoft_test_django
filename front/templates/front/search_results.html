@@ -10,8 +10,8 @@
   {% for room in object_list %}
     <div>
     {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
-        <form action="{% url 'book' %}">
-            <button>BOOK</button>
+        <form action="{% url 'book' %}" method="get">
+            <button value="{{ room.room_no }} "name="numb">BOOK</button>
         </form>
     </div>
 

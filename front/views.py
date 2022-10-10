@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, JsonResponse
 from itertools import chain
 from django.core.cache import cache
+from registration.models import Profile
 
 
 def index(request):
@@ -56,6 +57,10 @@ def book(request):
     cache.delete('checkin')
     cache.delete('checkout')
     cache.delete('num')
-    print(request.user)
-    #Booking.objects.create(guest='Dmitriy')
+    usr = Profile.objects.filter(Q(user__username__icontains=request.user))[0]
+    room_num = Room.objects.filter(Q(room_no__icontains=int(request.GET.get('numb'))))[0]
+    print(room_num)
+
+    Booking.objects.create(guest=usr,room=room_num,num_of_guest=num,checkin_date=checkin,
+                           checkout_date=checkout,is_checkout=False)
     return render(request, 'registration/profile.html')

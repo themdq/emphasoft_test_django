@@ -1,7 +1,7 @@
 from datetime import timedelta, datetime
 from django.db import models
 from datetime import datetime
-
+from registration.models import Profile
 
 class Guest(models.Model):
     name = models.CharField(max_length=20)
@@ -23,7 +23,7 @@ class Room(models.Model):
 
 
 class Booking(models.Model):
-    guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
+    guest = models.ForeignKey(Profile, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     num_of_guest = models.IntegerField(default=1)
     checkin_date = models.DateField(default=datetime.now)
@@ -31,7 +31,7 @@ class Booking(models.Model):
     is_checkout = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return self.guest.name
+        return self.guest.user.username
 
     def charge(self) -> float:
         return self.is_checkout * \
