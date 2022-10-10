@@ -25,6 +25,7 @@ pip install -r requirements.txt
 ```bash
 cd <path>
 ```
+Не забудьте вставить свои данные postgres в settings.py!
 Проведите миграции
 ```bash
 python manage.py makemigrations
