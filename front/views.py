@@ -17,6 +17,7 @@ class SearchResultsView(ListView):
     model = Room
     template_name = 'front/search_results.html'
     def get_queryset(self):
+        print(self.request.GET)
         query = self.request.GET.get('q')
         checkin = self.request.GET.get('checkin')
         checkout = self.request.GET.get('checkout')
@@ -35,10 +36,13 @@ class SearchResultsView(ListView):
         for item in result:
             if str(item.room) not in booked_rooms:
                 booked_rooms.append(str(item.room))
+        items = (Room.objects.filter(
+            Q(is_booked__icontains=False,room_size__icontains=query)&~Q(room_no__in=booked_rooms)))
+        return items
 
-        return (Room.objects.filter(
-            Q(is_booked__icontains=False,room_size__icontains=query)&~Q(room_no__in=booked_rooms)
-        ))
+    def get_ordering(self):
+        ordering = self.request.GET.get('orderby')
+        return ordering
 
 class AllRooms(ListView):
     model = Room

@@ -6,13 +6,32 @@
       </div>
       end loader -->
 <h1>Search Results</h1>
+<form action="{% url 'search_results' %}" method="get" id="sortProduct">
+
+  <div class="box sort pull-right">
+    <span>Сортировка:</span>
+    <button value="Сортировка" class="dropdown-toggle" type="submit" data-toggle="dropdown" id="menu2">
+     <span class="dropdown-label">По умолчанию</span>
+    </button>
+   <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+      <li><input type="submit" name="orderby" value="room_size"></li>
+       <li><input type="submit" name="orderby" value="-room_size"></li>
+      <li><input type="submit" name="orderby" value="price"></li>
+      <li><input type="submit" name="orderby" value="-price"></li>
+   </ul>
+  </div>
+</form>
 <ul>
   {% for room in object_list %}
     <div>
     {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
+        {% if user.is_authenticated %}
         <form action="{% url 'book' %}" method="get">
             <button value="{{ room.room_no }} "name="numb">BOOK</button>
         </form>
+        {% else %}
+            <p>You need log in to book a room</p>
+        {% endif %}
     </div>
 
 
