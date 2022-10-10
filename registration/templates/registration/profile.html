@@ -20,4 +20,12 @@
           </div>
       </form>
     </div>
+    {% for book in object_list %}
+    <div>
+      {{ book.room }}, {{ book.checkin_date |date:'Y-m-d'}}, {{ book.checkout_date|date:'Y-m-d' }},{{ book.charge }}
+      <form action="{% url 'cancel' %}" method="get">
+          <button value="{{ book.checkin_date|date:'Y-m-d' }}" name="del">cancel book</button>
+      </form>
+    </div>
+  {% endfor %}
 {% endblock content %}

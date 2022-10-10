@@ -7,14 +7,11 @@ from django.http import HttpResponseRedirect, JsonResponse
 from itertools import chain
 from django.core.cache import cache
 from registration.models import Profile
-
+from django.views.generic import ListView
+from hotel_app.models import Room, Booking
 
 def index(request):
     return render(request, 'front/home.html')
-
-
-from django.views.generic import ListView
-from hotel_app.models import Room, Booking
 
 class SearchResultsView(ListView):
     model = Room
@@ -59,8 +56,14 @@ def book(request):
     cache.delete('num')
     usr = Profile.objects.filter(Q(user__username__icontains=request.user))[0]
     room_num = Room.objects.filter(Q(room_no__icontains=int(request.GET.get('numb'))))[0]
-    print(room_num)
-
     Booking.objects.create(guest=usr,room=room_num,num_of_guest=num,checkin_date=checkin,
                            checkout_date=checkout,is_checkout=False)
     return render(request, 'registration/profile.html')
+
+def cancel_book(request):
+    usr = Profile.objects.filter(Q(user__username__icontains=request.user))[0]
+    query = (request.GET.get('del'))
+
+    Booking.objects.filter(guest=usr,checkin_date=query).delete()
+    return render(request, 'registration/profile.html')
+
