@@ -21,11 +21,14 @@
    </ul>
   </div>
 </form>
-<ul>
+
+<div class="row">
   {% for room in object_list %}
-    <div>
-    {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
-        {% if user.is_authenticated %}
+    <div class="col-md-4">
+        <h3>Room:{{ room.room_no }}</h3>
+        <h3>Price:{{ room.price }}</h3>
+        <h3>MaxGuests:{{ room.room_size }}</h3>
+    {% if user.is_authenticated %}
         <form action="{% url 'book' %}" method="get">
             <button value="{{ room.room_no }} "name="numb">BOOK</button>
         </form>
@@ -34,6 +37,5 @@
         {% endif %}
     </div>
 
-
   {% endfor %}
-</ul>
+</div>

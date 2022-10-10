@@ -20,9 +20,14 @@
           </div>
       </form>
     </div>
+    <h2>Бронирования</h2>
     {% for book in object_list %}
     <div>
-      {{ book.room }}, {{ book.checkin_date |date:'Y-m-d'}}, {{ book.checkout_date|date:'Y-m-d' }},{{ book.charge }}
+
+        <h3>Комната {{ book.room }}</h3>
+        <h3> Дата заселения  {{ book.checkin_date |date:'Y-m-d'}}</h3>
+        <h3>Дата выселения {{ book.checkout_date|date:'Y-m-d' }}</h3>
+        <h3> Оплаченная сумма {{ book.charge }}</h3>
       <form action="{% url 'cancel' %}" method="get">
           <button value="{{ book.checkin_date|date:'Y-m-d' }}" name="del">cancel book</button>
       </form>

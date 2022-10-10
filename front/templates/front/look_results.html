@@ -6,7 +6,6 @@
       </div>
       end loader -->
 <h1>Search Results</h1>
-<a href="{% url 'index' %}">Back to main</a>
 <form action="{% url 'look_results' %}" method="get" id="sortProduct">
 
   <div class="box sort pull-right">
@@ -23,9 +22,9 @@
   </div>
 </form>
 <ul>
+<div class="row">
   {% for room in object_list %}
-    <div>
-      {{ room.room_no }}, {{ room.price }}, {{ room.room_size }}
-    </div>
+    <div class="col-md-4"> <h3>Room:{{ room.room_no }}</h3> <h3>Price:{{ room.price }}</h3> <h3>MaxGuests:{{ room.room_size }}</h3> </div>
   {% endfor %}
+</div>
 </ul>
